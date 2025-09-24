@@ -11,7 +11,9 @@
   ],
   "activationEvents": [
     "onCommand:jcmsPluginTools.listProjects",
-    "onCommand:jcms.syncPlugin"
+    "onCommand:jcms.syncPlugin",
+    "onCommand:jcms.createProject",
+    "onCommand:jcms.createTemplate"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -23,6 +25,35 @@
       {
         "command": "jcms.syncPlugin",
         "title": "JCMS: Sync Plugin"
+      },
+      {
+        "command": "jcms.createProject",
+        "title": "JCMS: Create Plugin Project"
+      },
+      {
+        "command": "jcms.createTemplate",
+        "title": "JCMS: Create Template"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "xml",
+        "path": "./snippets/pluginxml.code-snippets"
+      }
+    ],
+    "languages": [
+      {
+        "id": "jcms-plugin-xml",
+        "aliases": ["JCMS Plugin XML", "plugin.xml"],
+        "extensions": ["plugin.xml"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jcms-plugin-xml",
+        "scopeName": "text.xml.jcms-plugin",
+        "path": "./syntaxes/jcms-plugin-xml.tmLanguage.json"
       }
     ]
   },
