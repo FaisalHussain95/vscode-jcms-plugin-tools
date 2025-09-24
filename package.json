@@ -1,20 +1,25 @@
 {
   "name": "vscode-jcms-plugin-tools",
-  "displayName": "VSCode JCMS Plugin Tools",
-  "description": "Tools to develop JCMS in VSCode",
+  "displayName": "JCMS Plugin Tools",
+  "description": "Tools to develop JCMS plugins in VSCode - migrated from Eclipse JCMS Plugin Tools",
   "version": "0.1.0",
   "engines": {
-    "vscode": "^1.60.0"
+    "vscode": "^1.70.0"
   },
   "categories": [
     "Other"
   ],
-  "main": "./out/extension.js",
   "activationEvents": [
+    "onCommand:jcmsPluginTools.listProjects",
     "onCommand:jcms.syncPlugin"
   ],
+  "main": "./out/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "jcmsPluginTools.listProjects",
+        "title": "JCMS: List Plugin Projects"
+      },
       {
         "command": "jcms.syncPlugin",
         "title": "JCMS: Sync Plugin"
@@ -30,20 +35,34 @@
     "test": "mocha --require ts-node/register test/**/*.test.ts"
   },
   "devDependencies": {
+    "@eslint/js": "^9.36.0",
     "@types/chai": "^4.3.5",
     "@types/fs-extra": "^11.0.4",
     "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@types/vscode": "^1.60.0",
-    "@typescript-eslint/eslint-plugin": "^5.31.0",
-    "@typescript-eslint/parser": "^5.31.0",
+    "@types/node": "^24.5.2",
+    "@types/vscode": "^1.104.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
     "chai": "^4.3.7",
-    "eslint": "^8.20.0",
+    "eslint": "^9.36.0",
     "mocha": "^10.2.0",
     "ts-node": "^10.9.1",
-    "typescript": "^4.7.4"
+    "typescript": "^5.9.2"
   },
   "dependencies": {
     "fs-extra": "^11.1.1"
-  }
+  },
+  "author": "FaisalHussain95",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FaisalHussain95/vscode-jcms-plugin-tools.git"
+  },
+  "keywords": [
+    "jcms",
+    "plugin",
+    "development",
+    "eclipse",
+    "migration"
+  ]
 }
