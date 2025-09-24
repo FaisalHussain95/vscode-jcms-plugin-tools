@@ -1,0 +1,52 @@
+{
+  "name": "vscode-jcms-plugin-tools",
+  "displayName": "JCMS Plugin Tools",
+  "description": "Tools to develop JCMS plugins in VSCode - migrated from Eclipse JCMS Plugin Tools",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:jcmsPluginTools.listProjects"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jcmsPluginTools.listProjects",
+        "title": "JCMS: List Plugin Projects"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^24.5.2",
+    "@types/vscode": "^1.104.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.1",
+    "@typescript-eslint/parser": "^8.44.1",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.2"
+  },
+  "author": "FaisalHussain95",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FaisalHussain95/vscode-jcms-plugin-tools.git"
+  },
+  "keywords": [
+    "jcms",
+    "plugin",
+    "development",
+    "eclipse",
+    "migration"
+  ]
+}
