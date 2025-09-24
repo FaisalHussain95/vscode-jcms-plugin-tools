@@ -2,11 +2,15 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 import { VSCodeSyncHandler } from './sync/vscodeHandler';
+import { ProjectWizard } from './projectWizard';
+import { TemplateManager } from './templateManager';
 
 export function activate(context: vscode.ExtensionContext) {
     console.log('JCMS Plugin Tools extension is now active!');
 
     const syncHandler = new VSCodeSyncHandler();
+    const projectWizard = new ProjectWizard();
+    const templateManager = new TemplateManager();
 
     const listProjectsDisposable = vscode.commands.registerCommand('jcmsPluginTools.listProjects', () => {
         listJCMSPluginProjects();
@@ -16,7 +20,20 @@ export function activate(context: vscode.ExtensionContext) {
         syncHandler.syncPluginFiles();
     });
 
-    context.subscriptions.push(listProjectsDisposable, syncPluginDisposable);
+    const createProjectDisposable = vscode.commands.registerCommand('jcms.createProject', () => {
+        projectWizard.createProject();
+    });
+
+    const createTemplateDisposable = vscode.commands.registerCommand('jcms.createTemplate', () => {
+        templateManager.createTemplate();
+    });
+
+    context.subscriptions.push(
+        listProjectsDisposable, 
+        syncPluginDisposable, 
+        createProjectDisposable,
+        createTemplateDisposable
+    );
 }
 
 export function deactivate() {}

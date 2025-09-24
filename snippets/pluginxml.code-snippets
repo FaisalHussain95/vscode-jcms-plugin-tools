@@ -1,0 +1,219 @@
+{
+    "JCMS Plugin Structure": {
+        "prefix": "jcms-plugin",
+        "body": [
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<plugin name=\"${1:PluginName}\" version=\"${2:1.0.0}\">",
+            "\t<label xml:lang=\"en\">${3:Plugin Display Name}</label>",
+            "\t<description xml:lang=\"en\">${4:Plugin description}</description>",
+            "\t",
+            "\t<!-- Plugin dependencies -->",
+            "\t<dependencies>",
+            "\t\t$5",
+            "\t</dependencies>",
+            "\t",
+            "\t<!-- Type definitions -->",
+            "\t<types>",
+            "\t\t$6",
+            "\t</types>",
+            "\t",
+            "\t<!-- Custom workflows -->",
+            "\t<workflows>",
+            "\t\t$7",
+            "\t</workflows>",
+            "\t",
+            "\t<!-- Web application resources -->",
+            "\t<webapp-files>",
+            "\t\t$8",
+            "\t</webapp-files>",
+            "\t",
+            "</plugin>"
+        ],
+        "description": "Complete JCMS plugin.xml structure"
+    },
+    
+    "JCMS Type Definition": {
+        "prefix": "jcms-type",
+        "body": [
+            "<type name=\"${1:TypeName}\" super-type=\"${2:Content}\">",
+            "\t<label xml:lang=\"en\">${3:Type Display Name}</label>",
+            "\t<description xml:lang=\"en\">${4:Type description}</description>",
+            "\t",
+            "\t<fields>",
+            "\t\t${5:<!-- Add fields here -->}",
+            "\t</fields>",
+            "\t",
+            "\t<tabs>",
+            "\t\t<tab name=\"${6:content}\">",
+            "\t\t\t<label xml:lang=\"en\">${7:Content}</label>",
+            "\t\t\t<fields>${8:field1 field2}</fields>",
+            "\t\t</tab>",
+            "\t</tabs>",
+            "</type>"
+        ],
+        "description": "JCMS type definition"
+    },
+    
+    "JCMS Field Definition": {
+        "prefix": "jcms-field",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"${2|String,Text,Date,Long,Double,Boolean,Category,FileDocument,ImageDocument|}\" ${3:required=\"true\"}>",
+            "\t<label xml:lang=\"en\">${4:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${5:Field description}</description>",
+            "\t<html-input>",
+            "\t\t${6:<size>80</size>}",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS field definition"
+    },
+    
+    "JCMS Text Field": {
+        "prefix": "jcms-field-text",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"String\">",
+            "\t<label xml:lang=\"en\">${2:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${3:Field description}</description>",
+            "\t<html-input>",
+            "\t\t<size>${4:80}</size>",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS string field"
+    },
+    
+    "JCMS Text Area Field": {
+        "prefix": "jcms-field-textarea",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"Text\">",
+            "\t<label xml:lang=\"en\">${2:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${3:Field description}</description>",
+            "\t<html-input>",
+            "\t\t<rows>${4:5}</rows>",
+            "\t\t<cols>${5:80}</cols>",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS text area field"
+    },
+    
+    "JCMS Date Field": {
+        "prefix": "jcms-field-date",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"Date\">",
+            "\t<label xml:lang=\"en\">${2:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${3:Field description}</description>",
+            "\t<html-input>",
+            "\t\t<date-type>${4|date,datetime,time|}</date-type>",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS date field"
+    },
+    
+    "JCMS Category Field": {
+        "prefix": "jcms-field-category",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"Category\">",
+            "\t<label xml:lang=\"en\">${2:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${3:Field description}</description>",
+            "\t<html-input>",
+            "\t\t<root-categories>${4:<!-- Specify root category IDs -->}</root-categories>",
+            "\t\t<multiple>${5|false,true|}</multiple>",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS category field"
+    },
+    
+    "JCMS File Field": {
+        "prefix": "jcms-field-file",
+        "body": [
+            "<field name=\"${1:fieldName}\" type=\"${2|FileDocument,ImageDocument|}\">",
+            "\t<label xml:lang=\"en\">${3:Field Label}</label>",
+            "\t<description xml:lang=\"en\">${4:Field description}</description>",
+            "\t<html-input>",
+            "\t\t<accept>${5:<!-- File type restrictions -->}</accept>",
+            "\t</html-input>",
+            "</field>"
+        ],
+        "description": "JCMS file/document field"
+    },
+    
+    "JCMS Workflow Definition": {
+        "prefix": "jcms-workflow",
+        "body": [
+            "<workflow name=\"${1:workflowName}\">",
+            "\t<label xml:lang=\"en\">${2:Workflow Display Name}</label>",
+            "\t<description xml:lang=\"en\">${3:Workflow description}</description>",
+            "\t",
+            "\t<states>",
+            "\t\t<state name=\"${4:draft}\">",
+            "\t\t\t<label xml:lang=\"en\">${5:Draft}</label>",
+            "\t\t\t<description xml:lang=\"en\">${6:Content is in draft state}</description>",
+            "\t\t</state>",
+            "\t\t$7",
+            "\t</states>",
+            "\t",
+            "\t<transitions>",
+            "\t\t$8",
+            "\t</transitions>",
+            "\t",
+            "\t<initial-state>${4:draft}</initial-state>",
+            "</workflow>"
+        ],
+        "description": "JCMS workflow definition"
+    },
+    
+    "JCMS Workflow State": {
+        "prefix": "jcms-state",
+        "body": [
+            "<state name=\"${1:stateName}\">",
+            "\t<label xml:lang=\"en\">${2:State Display Name}</label>",
+            "\t<description xml:lang=\"en\">${3:State description}</description>",
+            "</state>"
+        ],
+        "description": "JCMS workflow state"
+    },
+    
+    "JCMS Workflow Transition": {
+        "prefix": "jcms-transition",
+        "body": [
+            "<transition name=\"${1:transitionName}\" from=\"${2:fromState}\" to=\"${3:toState}\">",
+            "\t<label xml:lang=\"en\">${4:Transition Label}</label>",
+            "\t<description xml:lang=\"en\">${5:Transition description}</description>",
+            "\t<rights>",
+            "\t\t<right name=\"${6:required-right}\" />",
+            "\t</rights>",
+            "</transition>"
+        ],
+        "description": "JCMS workflow transition"
+    },
+    
+    "JCMS Plugin Dependency": {
+        "prefix": "jcms-dependency",
+        "body": [
+            "<plugin name=\"${1:DependencyPluginName}\" version=\"${2:1.0.0}\" />"
+        ],
+        "description": "JCMS plugin dependency"
+    },
+    
+    "JCMS Webapp File": {
+        "prefix": "jcms-webapp-file",
+        "body": [
+            "<file path=\"${1:path/to/file}\" ${2:overlay=\"true\"} />"
+        ],
+        "description": "JCMS webapp file definition"
+    },
+    
+    "JCMS Tab Definition": {
+        "prefix": "jcms-tab",
+        "body": [
+            "<tab name=\"${1:tabName}\">",
+            "\t<label xml:lang=\"en\">${2:Tab Label}</label>",
+            "\t<fields>${3:field1 field2}</fields>",
+            "</tab>"
+        ],
+        "description": "JCMS tab definition for types"
+    }
+}

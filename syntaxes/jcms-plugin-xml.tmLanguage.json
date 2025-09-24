@@ -1,0 +1,178 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "JCMS Plugin XML",
+    "scopeName": "text.xml.jcms-plugin",
+    "fileTypes": ["plugin.xml"],
+    "patterns": [
+        {
+            "include": "#xmlDeclaration"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#jcmsPluginElement"
+        },
+        {
+            "include": "#xmlTags"
+        }
+    ],
+    "repository": {
+        "xmlDeclaration": {
+            "name": "meta.tag.preprocessor.xml",
+            "match": "(<\\?)(xml)\\s+(version\\s*=\\s*[\"'][^\"']*[\"'])\\s*(encoding\\s*=\\s*[\"'][^\"']*[\"'])?\\s*(\\?>)",
+            "captures": {
+                "1": { "name": "punctuation.definition.tag.xml" },
+                "2": { "name": "entity.name.tag.xml" },
+                "3": { "name": "string.quoted.double.xml" },
+                "4": { "name": "string.quoted.double.xml" },
+                "5": { "name": "punctuation.definition.tag.xml" }
+            }
+        },
+        "comments": {
+            "name": "comment.block.xml",
+            "begin": "<!--",
+            "end": "-->",
+            "patterns": [
+                {
+                    "name": "invalid.illegal.bad-comments-or-CDATA.xml",
+                    "match": "--"
+                }
+            ]
+        },
+        "jcmsPluginElement": {
+            "begin": "(<)(plugin)\\b",
+            "beginCaptures": {
+                "1": { "name": "punctuation.definition.tag.begin.xml" },
+                "2": { "name": "entity.name.tag.jcms.plugin.xml" }
+            },
+            "end": "(/>)|((</)(plugin)(>))",
+            "endCaptures": {
+                "1": { "name": "punctuation.definition.tag.end.xml" },
+                "3": { "name": "punctuation.definition.tag.begin.xml" },
+                "4": { "name": "entity.name.tag.jcms.plugin.xml" },
+                "5": { "name": "punctuation.definition.tag.end.xml" }
+            },
+            "patterns": [
+                {
+                    "include": "#jcmsPluginAttributes"
+                },
+                {
+                    "include": "#jcmsElements"
+                }
+            ]
+        },
+        "jcmsPluginAttributes": {
+            "patterns": [
+                {
+                    "name": "entity.other.attribute-name.xml",
+                    "match": "\\b(name|version)\\b"
+                },
+                {
+                    "include": "#attributeValue"
+                }
+            ]
+        },
+        "jcmsElements": {
+            "patterns": [
+                {
+                    "begin": "(<)(types|type|fields|field|workflows|workflow|states|state|transitions|transition|dependencies|webapp-files|file|tabs|tab|label|description)\\b",
+                    "beginCaptures": {
+                        "1": { "name": "punctuation.definition.tag.begin.xml" },
+                        "2": { "name": "entity.name.tag.jcms.xml" }
+                    },
+                    "end": "(/>)|((</)(\\2)(>))",
+                    "endCaptures": {
+                        "1": { "name": "punctuation.definition.tag.end.xml" },
+                        "3": { "name": "punctuation.definition.tag.begin.xml" },
+                        "4": { "name": "entity.name.tag.jcms.xml" },
+                        "5": { "name": "punctuation.definition.tag.end.xml" }
+                    },
+                    "patterns": [
+                        {
+                            "include": "#jcmsAttributes"
+                        },
+                        {
+                            "include": "#jcmsElements"
+                        },
+                        {
+                            "include": "#xmlTags"
+                        },
+                        {
+                            "include": "#comments"
+                        }
+                    ]
+                }
+            ]
+        },
+        "jcmsAttributes": {
+            "patterns": [
+                {
+                    "name": "entity.other.attribute-name.jcms.xml",
+                    "match": "\\b(name|type|super-type|version|from|to|required|path|overlay|xml:lang|multiple|date-type|accept|root-categories)\\b"
+                },
+                {
+                    "include": "#attributeValue"
+                }
+            ]
+        },
+        "xmlTags": {
+            "begin": "(<)([a-zA-Z_:][-a-zA-Z0-9_:.]*)\\b",
+            "beginCaptures": {
+                "1": { "name": "punctuation.definition.tag.begin.xml" },
+                "2": { "name": "entity.name.tag.xml" }
+            },
+            "end": "(/>)|((</)(\\2)(>))",
+            "endCaptures": {
+                "1": { "name": "punctuation.definition.tag.end.xml" },
+                "3": { "name": "punctuation.definition.tag.begin.xml" },
+                "4": { "name": "entity.name.tag.xml" },
+                "5": { "name": "punctuation.definition.tag.end.xml" }
+            },
+            "patterns": [
+                {
+                    "include": "#attributeName"
+                },
+                {
+                    "include": "#attributeValue"
+                },
+                {
+                    "include": "#xmlTags"
+                },
+                {
+                    "include": "#comments"
+                }
+            ]
+        },
+        "attributeName": {
+            "name": "entity.other.attribute-name.xml",
+            "match": "\\b[a-zA-Z_:][-a-zA-Z0-9_:.]*\\b"
+        },
+        "attributeValue": {
+            "patterns": [
+                {
+                    "name": "string.quoted.double.xml",
+                    "begin": "\"",
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.entity.xml",
+                            "match": "&[a-zA-Z0-9]+;"
+                        }
+                    ]
+                },
+                {
+                    "name": "string.quoted.single.xml",
+                    "begin": "'",
+                    "end": "'",
+                    "patterns": [
+                        {
+                            "name": "constant.character.entity.xml",
+                            "match": "&[a-zA-Z0-9]+;"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
